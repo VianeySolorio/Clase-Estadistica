@@ -1,0 +1,83 @@
+#######################################################################################################################################
+# Teoría
+
+1. 
+a) Como excepciones o casos avanzados que van más allá de las primeras tres formas normales.
+
+
+#--------------------------------------------------------------------------------------------------------------------------------------
+
+2. 
+
+WHERE se utiliza para filtrar registros antes de agrupamiento, trabaja sobre los datos individuales de las filas. HAVING se utiliza para filtrar resultados después un agrupamiento
+
+
+#--------------------------------------------------------------------------------------------------------------------------------------
+
+3. 
+
+c) FROM -> WHERE -> SELECT -> ORDER BY
+
+
+
+#--------------------------------------------------------------------------------------------------------------------------------------
+
+4. 
+
+a) Anomalía de inserción, eliminación y actualización.
+
+#--------------------------------------------------------------------------------------------------------------------------------------
+
+5.
+Para poder subir documentos a tu git debe de ir en un orden en especifico
+Entonces el meme dice que no tiene sentido ese orden porque entonces no estarías subiendo nada, el orden correcto es
+suben pasajeros= git add
+despega avion= git commit
+vuela avion= git push
+
+
+#######################################################################################################################################
+# Práctica
+
+1.
+
+```SQL
+-- poner solución debajo de este mensaje
+
+SELECT AVG(edad) AS promedio_edad
+FROM alumnos
+WHERE apellido LIKE '%ez';
+
+
+```
+
+2.
+
+```SQL
+-- poner solución debajo de este mensaje
+
+SELECT a.nombre, a.apellido, MAX(c.calificacion) AS calificacion_maxima
+FROM alumnos a
+JOIN calificaciones c ON a.expediente = c.expediente
+WHERE c.calificacion IS NOT NULL
+GROUP BY a.expediente, a.nombre, a.apellido;
+
+
+```
+
+3.
+
+```SQL
+-- poner solución debajo de este mensaje
+
+FROM alumnos a
+JOIN calificaciones c ON a.expediente = c.expediente
+WHERE c.calificacion > (
+    SELECT AVG(calificacion)
+    FROM calificaciones
+    WHERE calificacion IS NOT NULL
+)
+GROUP BY a.expediente, a.nombre, a.apellido;
+
+
+```
